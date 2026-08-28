@@ -23,7 +23,7 @@ module.exports = {
                 .setDescription(`Cloudflare engellerini aştık kanka! **${sarki.title}** şarkısının tüm orijinal sözlerine aşağıdaki butona tıklayarak Genius üzerinden ışık hızıyla ulaşabilirsin. 🚀`)
                 .setThumbnail(sarki.thumbnail)
                 .setTimestamp()
-                .setFooter({ text: 'PixelCore Müzik', iconURL: client.user.displayAvatarURL() });
+                .setFooter({ text: 'PXD Müzik', iconURL: client.user.displayAvatarURL() });
 
             // Şarkı sözü sayfasına gitmesi için şık bir buton ekliyoruz
             const buton = new ButtonBuilder()

@@ -5,7 +5,7 @@ module.exports = {
     description: 'Bir kullanıcının veya kendinizin avatarını gösterir.',
     async execute(message, args, client) {
         const target = message.mentions.users.first() || message.author;
-        
+
         // Avatar linkini kaliteli (1024px) ve dinamik (GIF ise gif olarak) alalım
         const avatarUrl = target.displayAvatarURL({ dynamic: true, size: 1024 });
 
@@ -15,7 +15,7 @@ module.exports = {
             .setImage(avatarUrl)
             .setDescription(`[Avatar Linki](${avatarUrl})`)
             .setTimestamp()
-            .setFooter({ text: 'PixelCore Eğlence', iconURL: client.user.displayAvatarURL() });
+            .setFooter({ text: 'PXD Eğlence', iconURL: client.user.displayAvatarURL() });
 
         message.reply({ embeds: [embed] });
     }

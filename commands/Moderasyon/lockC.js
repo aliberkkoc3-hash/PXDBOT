@@ -20,7 +20,7 @@ module.exports = {
                 title: '🔒 Kanal Kilitlendi',
                 description: `Bu kanal <@${message.author.id}> tarafından muhabbete kapatılmıştır.`,
                 footer: {
-                    text: `PixelCore`,
+                    text: `PXDBOT`,
                     icon_url: message.author.displayAvatarURL({ dynamic: true })
                 },
                 timestamp: new Date()

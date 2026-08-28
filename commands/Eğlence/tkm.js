@@ -33,7 +33,7 @@ module.exports = {
             .setTitle('🪨 📄 ✂️ Taş - Kağıt - Makas')
             .setDescription(`**Senin Seçimin:** ${emojis[secim]}\n**Benim Seçimim:** ${emojis[botSecim]}\n\n**Sonuç:** ${durum}`)
             .setTimestamp()
-            .setFooter({ text: 'PixelCore Eğlence', iconURL: client.user.displayAvatarURL() });
+            .setFooter({ text: 'PXD Eğlence', iconURL: client.user.displayAvatarURL() });
 
         message.reply({ embeds: [embed] });
     }

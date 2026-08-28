@@ -23,7 +23,7 @@ module.exports = {
                 { name: '👥 Kullanıcılar', value: `${client.users.cache.size} Kullanıcı`, inline: true }
             ],
             footer: {
-                text: `PixelCore • Node.js ${process.version}`,
+                text: `PXD • Node.js ${process.version}`,
                 icon_url: message.author.displayAvatarURL({ dynamic: true })
             },
             timestamp: new Date()

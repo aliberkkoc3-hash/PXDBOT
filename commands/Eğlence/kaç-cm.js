@@ -18,7 +18,7 @@ module.exports = {
             .setTitle('📏 Ölçüm Sonucu')
             .setDescription(`**${target.username}** adlı üyenin ölçüm sonucu:\n\nBoyut: **${boy} cm**\n\n_${yorum}_`)
             .setTimestamp()
-            .setFooter({ text: 'PixelCore Eğlence', iconURL: client.user.displayAvatarURL() });
+            .setFooter({ text: 'PXD Eğlence', iconURL: client.user.displayAvatarURL() });
 
         message.reply({ embeds: [embed] });
     }

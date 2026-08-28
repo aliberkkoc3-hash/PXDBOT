@@ -17,7 +17,7 @@ module.exports = {
 
         const embed = {
             color: 0x5865F2, // PixelCore Mavisi
-            title: `📚 PixelCore Komut Listesi`,
+            title: `📚 PXD Komut Listesi`,
             description: `Aşağıda botun sahip olduğu tüm aktif komutlar kategorilerine göre listelenmiştir.\nKomutları tetiklemek için prefix: \`${config.prefix}\``,
             thumbnail: {
                 url: client.user.displayAvatarURL({ dynamic: true })
@@ -25,7 +25,7 @@ module.exports = {
             fields: [],
             // footer alanını senin için daha kurumsal ve detaylı hale getirdim kanka
             footer: {
-                text: `PixelCore • Toplam ${client.commands.size} aktif komut devrede!`,
+                text: `PXD • Toplam ${client.commands.size} aktif komut devrede!`,
                 icon_url: client.user.displayAvatarURL({ dynamic: true }) // İkon artık botun kendi avatarı
             },
             timestamp: new Date()

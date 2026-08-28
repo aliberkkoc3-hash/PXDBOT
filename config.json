@@ -1,5 +1,5 @@
 {
-    "prefix": "pixel!",
+    "prefix": "PXD-",
     "botOwner": "1515459786391425184",
     "lockedListC": "1519444434855530697",
     "welcomerCId": "1515827497026060491",
@@ -8,6 +8,6 @@
     "kickUName": "AliBerk0707",
     "mentionEveryone": true,
     "checkIntervalMs": 120000,
-    "footerText": "PixelCore Kick Bildirim Sistemi",
+    "footerText": "PXDBOT Kick Bildirim Sistemi",
     "geniusToken": "gcfMiuRqVAUWjF-JpUQDmEBh_COR1_fAaMoGw_JPIDzXbzP1_5bA0YbYcmg4XyTd"
 }

@@ -23,7 +23,7 @@ module.exports = {
                 .setDescription(`Sanatçının en popüler şarkılarına, albümlerine ve biyografisine aşağıdaki butona tıklayarak doğrudan resmi Genius profili üzerinden ulaşabilirsin kanka.`)
                 .setThumbnail(sanatci.image)
                 .setTimestamp()
-                .setFooter({ text: 'PixelCore Sanat', iconURL: client.user.displayAvatarURL() });
+                .setFooter({ text: 'PXD Sanat', iconURL: client.user.displayAvatarURL() });
 
             const buton = new ButtonBuilder()
                 .setLabel('Genius Profilini İncele 🔗')

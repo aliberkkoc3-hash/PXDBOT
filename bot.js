@@ -70,12 +70,12 @@ function getFormattedUptime() {
 }
 
 app.get('/', (req, res) => {
-    res.send('💚 PixelCore aktif ve canavar gibi çalışıyor!');
+    res.send('💚 PXDBOT aktif ve canavar gibi çalışıyor!');
 });
 
 app.get('/api/status', (req, res) => {
     res.json({
-        bot: 'PixelCore',
+        bot: 'PXDBOT',
         status: client.ws.ping ? 'online' : 'starting',
         ping: client.ws.ping || 0,
         uptime: getFormattedUptime(),
@@ -92,7 +92,7 @@ app.post('/api/apply', async (req, res) => {
             return res.status(400).json({ success: false, message: 'Eksik alan!' });
         }
 
-        const channelId = process.env.BASVURU_KANAL_ID; 
+        const channelId = process.env.BASVURU_KANAL_ID;
         const channel = await client.channels.fetch(channelId);
 
         if (!channel) {
@@ -139,7 +139,7 @@ app.listen(PORT, () => {
 client.login(process.env.TOKEN);
 
 const stopBot = () => {
-    console.log('\n🛑 PixelCore kapatılıyor...');
+    console.log('\n🛑 PXDBOT kapatılıyor...');
     client.destroy();
     process.exit(0);
 };

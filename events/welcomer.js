@@ -18,17 +18,17 @@ module.exports = {
             color: 0x5865F2, // PixelCore Mavisi
             title: `🚀 Aramıza Yeni Bir Kan Katıldı!`,
             description: `Selam <@${member.id}>, **${member.guild.name}** dünyasına hoş geldin kankam! Seninle birlikte burası daha da neşeli bir yer olacak. 🎉`,
-            
+
             // Sağ üst köşeye sunucunun ikonunu koyuyoruz
             thumbnail: {
                 url: guildIcon
             },
-            
+
             // Embed'in tam ortasına kocaman kullanıcının profil fotoğrafını yerleştiriyoruz
             image: {
                 url: userAvatar
             },
-            
+
             fields: [
                 {
                     name: '🆔 Kullanıcı Bilgisi',
@@ -46,9 +46,9 @@ module.exports = {
                     inline: false
                 }
             ],
-            
+
             footer: {
-                text: `PixelCore Karşılama Sistemi • Keyifli Vakit Geçirmeni Dileriz!`,
+                text: `PXDBOT Karşılama Sistemi • Keyifli Vakit Geçirmeni Dileriz!`,
                 icon_url: client.user.displayAvatarURL({ dynamic: true })
             },
             timestamp: new Date()

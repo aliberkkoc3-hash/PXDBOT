@@ -115,7 +115,7 @@ function buildLiveEmbed(username, data, livestream, client) {
     }
 
     embed.setFooter({
-        text: config.footerText || 'PixelCore Kick Bildirim Sistemi',
+        text: config.footerText || 'PXDBOT Kick Bildirim Sistemi',
         iconURL: client.user?.displayAvatarURL({ size: 128 }) || undefined
     });
 

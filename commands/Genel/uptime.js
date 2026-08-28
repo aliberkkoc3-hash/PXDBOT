@@ -12,7 +12,7 @@ module.exports = {
 
         // Toplam çalışma süresini milisaniye cinsinden alıyoruz
         let totalSeconds = (client.uptime / 1000);
-        
+
         // Gün, saat, dakika ve saniye hesaplamaları
         const days = Math.floor(totalSeconds / 86400);
         totalSeconds %= 86400;
@@ -30,14 +30,14 @@ module.exports = {
 
         const embed = new EmbedBuilder()
             .setColor(0x2ECC71) // Şık bir yeşil tonu
-            .setTitle('🟢 PixelCore Çalışma Süresi (Uptime)')
+            .setTitle('🟢 PXD Çalışma Süresi (Uptime)')
             .setDescription(`Botumuz şu anda kesintisiz olarak ${uptimeString} süredir aktif ve hizmet veriyor kanka!`)
             .addFields(
                 { name: '🤖 Bot Durumu', value: 'Aktif / Stabil', inline: true },
                 { name: '⚡ Gecikme (Ping)', value: `\`${client.ws.ping}ms\``, inline: true }
             )
             .setTimestamp()
-            .setFooter({ text: 'PixelCore İstatistik', iconURL: client.user.displayAvatarURL() });
+            .setFooter({ text: 'PXD İstatistik', iconURL: client.user.displayAvatarURL() });
 
         // Gönderdiğimiz loading mesajını şık embed ile güncelleyelim
         await loadingMessage.edit({ content: '', embeds: [embed] });

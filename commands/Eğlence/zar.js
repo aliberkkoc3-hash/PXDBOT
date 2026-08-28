@@ -11,7 +11,7 @@ module.exports = {
             .setTitle('🎲 Zar Atıldı!')
             .setDescription(`**${message.author.username}** zarı fırlattı ve gelen sayı: **${zar}**!`)
             .setTimestamp()
-            .setFooter({ text: 'PixelCore Eğlence', iconURL: client.user.displayAvatarURL() });
+            .setFooter({ text: 'PXD Eğlence', iconURL: client.user.displayAvatarURL() });
 
         message.reply({ embeds: [embed] });
     }

@@ -27,7 +27,7 @@ module.exports = {
                 )
                 .setDescription(`Şarkı hakkındaki tüm popüler kültür notlarına, yapımcı kadrosuna ve detaylı analizlere aşağıdaki butondan resmi Genius sayfası üzerinden ulaşabilirsin kanka!`)
                 .setTimestamp()
-                .setFooter({ text: 'PixelCore Kültür', iconURL: client.user.displayAvatarURL() });
+                .setFooter({ text: 'PXD Kültür', iconURL: client.user.displayAvatarURL() });
 
             const buton = new ButtonBuilder()
                 .setLabel('Tüm Detayları Gör 📊')

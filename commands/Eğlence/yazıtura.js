@@ -12,7 +12,7 @@ module.exports = {
             .setTitle('🪙 Para Fırlatıldı!')
             .setDescription(`**${message.author.username}** parayı havaya attı...\n\nSonuç: **${rastgele}**`)
             .setTimestamp()
-            .setFooter({ text: 'PixelCore Eğlence', iconURL: client.user.displayAvatarURL() });
+            .setFooter({ text: 'PXD Eğlence', iconURL: client.user.displayAvatarURL() });
 
         message.reply({ embeds: [embed] });
     }

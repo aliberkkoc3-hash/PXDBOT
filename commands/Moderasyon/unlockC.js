@@ -19,7 +19,7 @@ module.exports = {
                 title: '🔓 Kanal Kilidi Açıldı',
                 description: `Bu kanal <@${message.author.id}> tarafından tekrar muhabbete açılmıştır. Yazın gelsin!`,
                 footer: {
-                    text: `PixelCore`,
+                    text: `PXDBOT`,
                     icon_url: message.author.displayAvatarURL({ dynamic: true })
                 },
                 timestamp: new Date()

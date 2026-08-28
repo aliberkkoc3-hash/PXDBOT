@@ -10,7 +10,7 @@ module.exports = {
         }
 
         const channels = message.guild.channels.cache;
-        
+
         const lockedChannels = channels.filter(channel => {
             if (channel.type !== ChannelType.GuildText) return false;
             const overwrite = channel.permissionOverwrites.cache.get(message.guild.roles.everyone.id);
@@ -21,7 +21,7 @@ module.exports = {
             color: 0x5865F2, // PixelCore Mavi tonu
             title: '🔒 Kilitli Kanallar Listesi',
             footer: {
-                text: `PixelCore`,
+                text: `PXDBOT`,
                 icon_url: message.author.displayAvatarURL({ dynamic: true })
             },
             timestamp: new Date()

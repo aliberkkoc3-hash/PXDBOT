@@ -20,11 +20,11 @@ async function sendLog(client, title, description, color = 0x5865F2, author = nu
 
         const embed = {
             color: color,
-            title: `📋 PixelCore Log | ${title}`,
+            title: `📋 PXDBOT Log | ${title}`,
             description: description,
             timestamp: new Date(),
             footer: {
-                text: 'PixelCore Güvenlik Sistemi',
+                text: 'PXDBOT Güvenlik Sistemi',
                 icon_url: client.user.displayAvatarURL()
             }
         };
