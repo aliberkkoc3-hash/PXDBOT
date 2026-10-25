@@ -3,8 +3,9 @@ const fs = require('fs');
 const path = require('path');
 const config = require('../config.json');
 const { sendLog } = require('../utils/logger'); // Log sistemini çağırıyoruz
+const { getGuildSettings } = require('../utils/guildSettings');
 
-const badWordsPath = path.join(__dirname, '../data/badWords.json');
+const badWordsPath = path.join(__dirname, '../data/badWord.json');
 
 const charMap = {
     '1': 'i', 'i': 'i', 'ı': 'i', 'î': 'i',
@@ -30,6 +31,7 @@ module.exports = {
     once: false,
     async execute(message, client) {
         if (message.author.bot || !message.guild) return;
+        if (!getGuildSettings(message.guild.id).antiBadWordsEnabled) return;
 
         if (message.author.id === config.botOwner || message.member.permissions.has(PermissionFlagsBits.ManageMessages)) {
             return;
@@ -64,7 +66,8 @@ module.exports = {
                         'Küfür/Argo Engellendi', 
                         `**Kanal:** <#${message.channel.id}>\n**Kullanıcı:** <@${message.author.id}>\n**Yazılan Mesaj:**\n\`\`\`${message.content}\`\`\``, 
                         0xFF5555, // Kırmızı renk
-                        message.author
+                        message.author,
+                        message.guild.id
                     );
                 }
             } catch (error) {

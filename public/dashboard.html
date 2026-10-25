@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0a0912" />
+    <meta name="description" content="PXDBot sunucu yönetim merkezi" />
+
+    <title>PXDBot — Control Center</title>
+
+    <link rel="icon" type="image/png" href="/art/ikon.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="/dashboard.css" />
+    <script src="/dashboard.js" defer></script>
+    <script src="/dashboard-json.js" defer></script>
+  </head>
+
+  <body>
+    <div class="background-grid" aria-hidden="true"></div>
+    <div class="orb orb-purple" aria-hidden="true"></div>
+    <div class="orb orb-cyan" aria-hidden="true"></div>
+
+    <main class="app-shell">
+      <!-- ÜST MENÜ -->
+      <header class="topbar">
+        <a class="brand" href="/dashboard" aria-label="PXDBot ana sayfa">
+          <span class="brand-icon">
+            <img src="/art/ikon.png" alt="PXDBot logosu" />
+          </span>
+
+          <span class="brand-copy">
+            <strong>PXDBot</strong>
+            <small>CONTROL CENTER</small>
+          </span>
+        </a>
+
+        <div class="topbar-right">
+          <div class="connection-pill">
+            <span class="connection-dot" id="connectionDot"></span>
+            <span id="connectionLabel">Bağlantı bekleniyor</span>
+          </div>
+
+          <button
+            class="icon-button hidden"
+            id="logoutBtn"
+            type="button"
+            title="Oturumu kapat"
+            aria-label="Oturumu kapat"
+          >
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          </button>
+        </div>
+      </header>
+
+      <!-- KARŞILAMA -->
+      <section class="hero">
+        <div class="hero-copy">
+          <div class="eyebrow">
+            <span class="eyebrow-line"></span>
+            SUNUCU YÖNETİMİ
+            <span class="eyebrow-index">/ 01</span>
+          </div>
+
+          <h1>
+            Kontrol sende.<br />
+            <span>Sunucun, kuralların.</span>
+          </h1>
+
+          <p>
+            PXDBot modüllerini tek bir merkezden yapılandır. Değişikliklerini
+            sunucuya özel kaydet ve topluluğunun kontrolünü elinde tut.
+          </p>
+
+          <div class="hero-tags">
+            <span>
+              <i class="fa-solid fa-shield-halved"></i>
+              Güvenli yönetim
+            </span>
+
+            <span>
+              <i class="fa-solid fa-sliders"></i>
+              Kolay yapılandırma
+            </span>
+          </div>
+        </div>
+
+        <div class="hero-orbit" aria-hidden="true">
+          <div class="orbit orbit-one"></div>
+          <div class="orbit orbit-two"></div>
+
+          <div class="orbit-core">
+            <img src="/art/ikon.png" alt="PXDBot logosu" />
+            <i></i>
+          </div>
+
+          <span class="orbit-chip chip-one">SECURITY</span>
+          <span class="orbit-chip chip-two">CONTROL</span>
+        </div>
+      </section>
+
+      <!-- YÖNETİM ALANI -->
+      <section id="workspace" class="workspace hidden">
+        <!-- BÖLÜM BAŞLIĞI -->
+        <div class="workspace-heading">
+          <div>
+            <div class="section-kicker">GENEL BAKIŞ</div>
+            <h2>Sunucu ayarları</h2>
+
+            <p class="workspace-subtitle">
+              Modüllerini yönet, ayarlarını sunucuna özel kaydet.
+            </p>
+          </div>
+
+          <button id="refreshBtn" class="button button-secondary" type="button">
+            <i class="fa-solid fa-rotate refresh-icon"></i>
+            Yenile
+          </button>
+        </div>
+
+        <!-- SUNUCU SEÇİMİ -->
+        <div class="server-bar panel">
+          <div class="server-avatar">
+            <i class="fa-brands fa-discord"></i>
+          </div>
+
+          <div class="server-picker">
+            <label for="guildSelect">Yapılandırılacak sunucu</label>
+
+            <select id="guildSelect" disabled>
+              <option value="">Sunucular yükleniyor...</option>
+            </select>
+          </div>
+
+          <div class="server-bar-note">
+            <span class="mini-dot"></span>
+            Sunucuya özel yapılandırma
+          </div>
+        </div>
+
+        <div class="settings-grid">
+          <!-- GENEL AYARLAR -->
+          <section class="settings-card panel">
+            <div class="card-heading">
+              <div class="card-icon icon-purple">
+                <i class="fa-solid fa-sliders"></i>
+              </div>
+
+              <div class="card-heading-copy">
+                <div class="section-kicker">01 / TEMEL</div>
+                <h3>Genel ayarlar</h3>
+              </div>
+
+              <span class="card-index">01</span>
+            </div>
+
+            <div class="field-block">
+              <label for="prefixInput">Komut prefix'i</label>
+
+              <input
+                id="prefixInput"
+                type="text"
+                maxlength="8"
+                placeholder="PXD-"
+                autocomplete="off"
+              />
+
+              <p class="field-help">
+                Komutların başında kullanılacak önek. Örnek:
+                <code>PXD-help</code>
+              </p>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-copy">
+                <strong>@everyone izni</strong>
+                <p>Otomatik sistemlerin herkese bahsetmesine izin verir.</p>
+              </div>
+
+              <label class="switch" for="mentionEveryone">
+                <input id="mentionEveryone" type="checkbox" />
+                <span class="switch-track"></span>
+                <span class="sr-only">Herkese bahsetme izni</span>
+              </label>
+            </div>
+          </section>
+
+          <!-- GÜVENLİK MODÜLLERİ -->
+          <section class="settings-card panel">
+            <div class="card-heading">
+              <div class="card-icon icon-red">
+                <i class="fa-solid fa-shield-halved"></i>
+              </div>
+
+              <div class="card-heading-copy">
+                <div class="section-kicker">02 / KORUMA</div>
+                <h3>Güvenlik modülleri</h3>
+              </div>
+
+              <span class="card-index">02</span>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-copy">
+                <strong>Link koruması</strong>
+                <p>Sunucuda istenmeyen bağlantıları engeller.</p>
+              </div>
+
+              <label class="switch" for="antiLinkEnabled">
+                <input id="antiLinkEnabled" type="checkbox" />
+                <span class="switch-track"></span>
+                <span class="sr-only">Link koruması</span>
+              </label>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-copy">
+                <strong>Anti-spam</strong>
+                <p>Arka arkaya gönderilen hızlı mesajları algılar.</p>
+              </div>
+
+              <label class="switch" for="antiSpamEnabled">
+                <input id="antiSpamEnabled" type="checkbox" />
+                <span class="switch-track"></span>
+                <span class="sr-only">Anti-spam</span>
+              </label>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-copy">
+                <strong>Küfür filtresi</strong>
+                <p>Mesajları yasaklı kelime listesine göre kontrol eder.</p>
+              </div>
+
+              <label class="switch" for="antiBadWordsEnabled">
+                <input id="antiBadWordsEnabled" type="checkbox" />
+                <span class="switch-track"></span>
+                <span class="sr-only">Küfür filtresi</span>
+              </label>
+            </div>
+          </section>
+
+          <!-- TOPLULUK AYARLARI -->
+          <section class="settings-card panel">
+            <div class="card-heading">
+              <div class="card-icon icon-cyan">
+                <i class="fa-solid fa-users"></i>
+              </div>
+
+              <div class="card-heading-copy">
+                <div class="section-kicker">03 / TOPLULUK</div>
+                <h3>Topluluk ayarları</h3>
+              </div>
+
+              <span class="card-index">03</span>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-copy">
+                <strong>Otomatik cevaplar</strong>
+                <p>Tanımlanmış mesajlara otomatik yanıt verir.</p>
+              </div>
+
+              <label class="switch" for="autoReplyEnabled">
+                <input id="autoReplyEnabled" type="checkbox" />
+                <span class="switch-track"></span>
+                <span class="sr-only">Otomatik cevaplar</span>
+              </label>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-copy">
+                <strong>Karşılama sistemi</strong>
+                <p>Yeni üyeler için hoş geldin mesajlarını etkinleştirir.</p>
+              </div>
+
+              <label class="switch" for="welcomeEnabled">
+                <input id="welcomeEnabled" type="checkbox" />
+                <span class="switch-track"></span>
+                <span class="sr-only">Karşılama sistemi</span>
+              </label>
+            </div>
+
+            <div class="field-block">
+              <label for="welcomeChannelId">Karşılama kanalı</label>
+
+              <select id="welcomeChannelId">
+                <option value="">Kanal seçilmedi</option>
+              </select>
+            </div>
+
+            <div class="field-block">
+              <label for="logChannelId">Log kanalı</label>
+
+              <select id="logChannelId">
+                <option value="">Kanal seçilmedi</option>
+              </select>
+
+              <p class="field-help">
+                Listede yalnızca botun erişebildiği metin kanalları bulunur.
+              </p>
+            </div>
+          </section>
+
+          <!-- JSON DOSYA YÖNETİCİSİ -->
+          <section
+            class="panel settings-card json-manager-card"
+            id="jsonManagerCard"
+          >
+            <div class="card-heading">
+              <div class="card-icon icon-cyan">
+                <i class="fa-solid fa-file-code" aria-hidden="true"></i>
+              </div>
+
+              <div class="card-heading-copy">
+                <span class="section-kicker">GELİŞMİŞ YÖNETİM</span>
+                <h3>JSON Dosya Editörü</h3>
+              </div>
+
+              <span class="card-index">04</span>
+            </div>
+
+            <p class="json-editor-description">
+              PXDBOT'un otomatik yanıt, yasaklı kelime, kara liste ve ak
+              liste dosyalarını doğrudan panelden düzenle.
+            </p>
+
+            <div class="field-block">
+              <label for="jsonFileSelect">Düzenlenecek dosya</label>
+              <select id="jsonFileSelect">
+                <option value="autoreplies.json">Otomatik Yanıtlar</option>
+                <option value="badWords.json">Yasaklı Kelimeler</option>
+                <option value="blackList.json">Kara Liste</option>
+                <option value="whiteList.json">Ak Liste</option>
+              </select>
+              <p class="field-help">
+                Dosyalar sunucudaki data klasöründen yüklenir.
+              </p>
+            </div>
+
+            <div class="json-editor-toolbar">
+              <div class="json-file-info">
+                <span
+                  class="json-status-dot"
+                  id="jsonFileDot"
+                  data-state="idle"
+                ></span>
+                <span
+                  id="jsonFileStatus"
+                  data-state="idle"
+                  role="status"
+                  aria-live="polite"
+                >
+                  Dosya yüklenmeye hazır.
+                </span>
+              </div>
+
+              <span class="json-file-name" id="jsonFileName"
+                >autoreplies.json</span
+              >
+            </div>
+
+            <label for="jsonEditor">JSON içeriği</label>
+            <textarea
+              id="jsonEditor"
+              class="json-editor"
+              spellcheck="false"
+              autocapitalize="off"
+              autocomplete="off"
+              autocorrect="off"
+              wrap="off"
+              placeholder="JSON dosyası yükleniyor..."
+              disabled
+            ></textarea>
+
+            <div class="json-editor-footer">
+              <span id="jsonValidationMessage" role="status" aria-live="polite">
+                Bir dosya seçerek başlayabilirsin.
+              </span>
+              <span id="jsonCharCount">0 karakter</span>
+            </div>
+
+            <div class="json-editor-actions">
+              <button
+                class="button button-secondary"
+                id="jsonReloadBtn"
+                type="button"
+              >
+                <span
+                  ><i class="fa-solid fa-rotate-right" aria-hidden="true"></i>
+                  Yeniden Yükle</span
+                >
+              </button>
+
+              <button
+                class="button button-secondary"
+                id="jsonValidateBtn"
+                type="button"
+              >
+                <span
+                  ><i class="fa-solid fa-check" aria-hidden="true"></i>
+                  Doğrula</span
+                >
+              </button>
+
+              <button
+                class="button button-primary"
+                id="jsonSaveBtn"
+                type="button"
+                disabled
+              >
+                <span
+                  ><i class="fa-solid fa-floppy-disk" aria-hidden="true"></i>
+                  Kaydet</span
+                >
+              </button>
+            </div>
+
+            <p class="json-editor-warning">
+              <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+              Kaydetme işlemi sunucuda doğrulanır. Her başarılı kayıtta mevcut
+              dosyanın .bak yedeği oluşturulur.
+            </p>
+          </section>
+          <!-- JSON DOSYA YÖNETİCİSİ SONU -->
+
+          <!-- KAYDETME -->
+          <section class="save-panel panel">
+            <div class="save-copy">
+              <div class="save-icon">
+                <i class="fa-solid fa-floppy-disk"></i>
+              </div>
+
+              <div>
+                <div class="section-kicker">SON ADIM</div>
+                <h3>Değişiklikleri uygula</h3>
+
+                <p>
+                  Yaptığın ayarları seçili sunucuya kaydet. Kaydedilmemiş
+                  değişiklikler sunucuya uygulanmaz.
+                </p>
+              </div>
+            </div>
+
+            <div class="save-actions">
+              <div
+                id="saveStatus"
+                class="save-status"
+                role="status"
+                aria-live="polite"
+              >
+                Ayarlar yükleniyor...
+              </div>
+
+              <button
+                id="saveBtn"
+                class="button button-primary"
+                type="button"
+                disabled
+              >
+                <span>
+                  <i class="fa-solid fa-cloud-arrow-up"></i>
+                  Ayarları kaydet
+                </span>
+
+                <i class="fa-solid fa-arrow-right button-arrow"></i>
+              </button>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <!-- ALT BİLGİ -->
+      <footer class="footer">
+        <div class="footer-brand">
+          <span class="footer-mark">
+            <img src="/art/ikon.png" alt="" aria-hidden="true" />
+          </span>
+
+          <span>
+            PXDBot <span class="footer-muted">/ Control Center</span>
+          </span>
+        </div>
+
+        <div class="footer-right">
+          <span>
+            <i class="fa-solid fa-cubes"></i>
+            Modüler
+          </span>
+
+          <i class="footer-separator"></i>
+
+          <span>
+            <i class="fa-solid fa-server"></i>
+            Sunucu bazlı
+          </span>
+
+          <i class="footer-separator"></i>
+
+          <span>
+            <i class="fa-solid fa-lock"></i>
+            Güvenli
+          </span>
+        </div>
+      </footer>
+    </main>
+
+    <!-- BİLDİRİMLER -->
+    <div
+      id="toastRegion"
+      class="toast-region"
+      aria-live="polite"
+      aria-atomic="true"
+    ></div>
+  </body>
+</html>

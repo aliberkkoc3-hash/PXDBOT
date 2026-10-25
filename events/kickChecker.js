@@ -1,6 +1,7 @@
 const { EmbedBuilder } = require('discord.js');
 const fs = require('fs');
 const path = require('path');
+const { getGuildSettings } = require('../utils/guildSettings');
 
 // ─────────────────────────────────────────────
 // PixelCore Kick Canlı Yayın Bildirim Sistemi
@@ -189,7 +190,8 @@ module.exports = {
                     }
 
                     const embed = buildLiveEmbed(currentUsername, data, livestream, client);
-                    const content = buildNotificationContent(currentUsername, currentConfig);
+                    const guildSettings = channel.guild ? getGuildSettings(channel.guild.id) : { mentionEveryone: currentConfig.mentionEveryone };
+                    const content = buildNotificationContent(currentUsername, { ...currentConfig, mentionEveryone: guildSettings.mentionEveryone });
 
                     await channel.send({ content, embeds: [embed] });
                     console.log(`[Kick Tracker] ${currentUsername} için canlı yayın bildirimi gönderildi.`);

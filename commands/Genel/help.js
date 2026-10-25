@@ -1,10 +1,11 @@
-const config = require('../../config.json');
+const { getGuildSettings } = require('../../utils/guildSettings');
 
 module.exports = {
     name: 'help',
     description: 'Botun tüm komutlarını kategorize şekilde listeler.',
     execute(message, args, client) {
         const categories = {};
+        const prefix = message.guild ? getGuildSettings(message.guild.id).prefix : 'PXD-';
 
         // Komutları kategorilerine göre grupla
         client.commands.forEach(command => {
@@ -18,7 +19,7 @@ module.exports = {
         const embed = {
             color: 0x5865F2, // PixelCore Mavisi
             title: `📚 PXD Komut Listesi`,
-            description: `Aşağıda botun sahip olduğu tüm aktif komutlar kategorilerine göre listelenmiştir.\nKomutları tetiklemek için prefix: \`${config.prefix}\``,
+            description: `Aşağıda botun sahip olduğu tüm aktif komutlar kategorilerine göre listelenmiştir.\nKomutları tetiklemek için prefix: \`${prefix}\``,
             thumbnail: {
                 url: client.user.displayAvatarURL({ dynamic: true })
             },
@@ -34,7 +35,7 @@ module.exports = {
         // Kategorileri alanlara (fields) böl
         for (const [categoryName, commands] of Object.entries(categories)) {
             const commandList = commands
-                .map(cmd => `\`${config.prefix}${cmd.name}\` - *${cmd.description || 'Açıklama yok.'}*`)
+                .map(cmd => `\`${prefix}${cmd.name}\` - *${cmd.description || 'Açıklama yok.'}*`)
                 .join('\n');
 
             embed.fields.push({

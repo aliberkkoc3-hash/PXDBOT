@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { getGuildSettings } = require('../utils/guildSettings');
 
 // JSON dosyamızın yolunu belirtiyoruz
 const repliesPath = path.join(__dirname, '../data/autoreplies.json');
@@ -9,7 +10,8 @@ module.exports = {
     once: false,
     async execute(message, client) {
         // Mesaj bir bottan geliyorsa hiçbir şey yapma
-        if (message.author.bot) return;
+        if (message.author.bot || !message.guild) return;
+        if (!getGuildSettings(message.guild.id).autoReplyEnabled) return;
 
         // JSON dosyamız var mı kontrol et
         if (fs.existsSync(repliesPath)) {

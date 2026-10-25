@@ -1,10 +1,12 @@
-const config = require('../config.json');
+const { getGuildSettings } = require('../utils/guildSettings');
 
 module.exports = {
     name: 'guildMemberAdd',
     once: false,
     async execute(member, client) {
-        const welcomeChannelId = config.welcomerCId;
+        const settings = getGuildSettings(member.guild.id);
+        if (!settings.welcomeEnabled) return;
+        const welcomeChannelId = settings.welcomeChannelId;
         if (!welcomeChannelId) return;
 
         const channel = member.guild.channels.cache.get(welcomeChannelId);

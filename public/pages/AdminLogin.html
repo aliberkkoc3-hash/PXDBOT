@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PXDBot | Yönetici Girişi</title>
+
+    <link rel="icon" type="image/png" href="/art/ikon.png">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="/pages/AdminLogin.css">
+</head>
+<body>
+    <div class="background-effects">
+        <div class="glow glow-purple"></div>
+        <div class="glow glow-cyan"></div>
+        <div class="grid-overlay"></div>
+    </div>
+
+    <main class="login-container">
+        <a class="brand" href="/pages/AdminLogin.html">
+            <img src="/art/ikon.png" alt="PXDBot">
+            <span>PXDBot<span class="brand-dot">.</span></span>
+        </a>
+
+        <section class="login-card">
+            <div class="login-icon">
+                <i class="fa-solid fa-shield-halved"></i>
+            </div>
+
+            <p class="eyebrow">YÖNETİCİ PANELİ</p>
+            <h1>Tekrar hoş geldin.</h1>
+            <p class="description">
+                Dashboard'a erişmek için yönetici kimliğini doğrula.
+            </p>
+
+            <form id="loginForm">
+                <label for="adminToken">Yönetici erişim tokeni</label>
+
+                <div class="input-wrapper">
+                    <i class="fa-solid fa-key"></i>
+                    <input
+                        id="adminToken"
+                        name="adminToken"
+                        type="password"
+                        placeholder="Tokenini gir..."
+                        autocomplete="current-password"
+                        required
+                    >
+                    <button
+                        class="toggle-password"
+                        id="togglePassword"
+                        type="button"
+                        aria-label="Token görünürlüğünü değiştir"
+                    >
+                        <i class="fa-regular fa-eye"></i>
+                    </button>
+                </div>
+
+                <p id="loginError" class="error-message" role="alert"></p>
+
+                <button id="loginButton" class="login-button" type="submit">
+                    <span>Giriş Yap</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </form>
+
+            <div class="security-note">
+                <i class="fa-solid fa-lock"></i>
+                <span>Bağlantı ve erişim sunucu tarafından doğrulanır.</span>
+            </div>
+        </section>
+
+        <footer>
+            <span><strong>© 2026 Prism Crew Studio</strong></span>
+            <span class="footer-separator">•</span>
+            <span>PXDBot Admin</span>
+        </footer>
+    </main>
+
+    <script src="/scripts/js/ALOGIN.js" defer></script>
+</body>
+</html>

@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const config = require('../config.json');
 const { sendLog } = require('../utils/logger'); // Log sistemini çağırıyoruz
+const { getGuildSettings } = require('../utils/guildSettings');
 
 const whitelistPath = path.join(__dirname, '../data/whiteList.json');
 
@@ -11,6 +12,7 @@ module.exports = {
     once: false,
     async execute(message, client) {
         if (message.author.bot || !message.guild) return;
+        if (!getGuildSettings(message.guild.id).antiLinkEnabled) return;
 
         if (message.author.id === config.botOwner || message.member.permissions.has(PermissionFlagsBits.ManageMessages)) {
             return;
@@ -44,7 +46,8 @@ module.exports = {
                         'Yasaklı Link Engellendi',
                         `**Kanal:** <#${message.channel.id}>\n**Kullanıcı:** <@${message.author.id}>\n**Paylaşılan Link:**\n${message.content}`,
                         0xFFAA00, // Turuncu renk
-                        message.author
+                        message.author,
+                        message.guild.id
                     );
                 } catch (error) {
                     console.error('[Anti-Link/Error]:', error);

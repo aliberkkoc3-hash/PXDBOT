@@ -1,0 +1,317 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+    color-scheme: dark;
+    --bg: #090811;
+    --surface: rgba(20, 18, 35, 0.82);
+    --border: rgba(167, 139, 250, 0.18);
+    --purple: #9b7bff;
+    --purple-bright: #b49aff;
+    --cyan: #55e6ff;
+    --text: #f5f3ff;
+    --muted: #9692ad;
+    --danger: #ff7188;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    display: grid;
+    place-items: center;
+    padding: 28px 18px;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+.background-effects {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.glow {
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    filter: blur(115px);
+    opacity: 0.18;
+}
+
+.glow-purple {
+    top: -180px;
+    left: -120px;
+    background: #824cff;
+}
+
+.glow-cyan {
+    right: -180px;
+    bottom: -200px;
+    background: #00d9ff;
+}
+
+.grid-overlay {
+    position: absolute;
+    inset: 0;
+    opacity: 0.13;
+    background-image:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+    background-size: 42px 42px;
+    mask-image: linear-gradient(to bottom, black, transparent 90%);
+}
+
+.login-container {
+    width: 100%;
+    max-width: 440px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 30px;
+    color: var(--text);
+    text-decoration: none;
+    font: 700 27px 'Space Grotesk', sans-serif;
+    letter-spacing: -1px;
+}
+
+.brand img {
+    width: 43px;
+    height: 43px;
+    object-fit: contain;
+    border-radius: 13px;
+    filter: drop-shadow(0 0 14px rgba(155, 123, 255, .3));
+}
+
+.brand-dot {
+    color: var(--purple-bright);
+}
+
+.login-card {
+    padding: 36px;
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    background: var(--surface);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    box-shadow:
+        0 24px 80px rgba(0, 0, 0, .35),
+        inset 0 1px rgba(255, 255, 255, .035);
+}
+
+.login-icon {
+    display: grid;
+    place-items: center;
+    width: 58px;
+    height: 58px;
+    margin-bottom: 25px;
+    border: 1px solid rgba(167, 139, 250, .25);
+    border-radius: 18px;
+    background: linear-gradient(
+        135deg,
+        rgba(155, 123, 255, .19),
+        rgba(85, 230, 255, .07)
+    );
+    color: var(--purple-bright);
+    font-size: 23px;
+}
+
+.eyebrow {
+    margin-bottom: 10px;
+    color: var(--cyan);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+h1 {
+    font: 700 clamp(25px, 6vw, 31px) 'Space Grotesk', sans-serif;
+    letter-spacing: -1.2px;
+}
+
+.description {
+    margin-top: 12px;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+form {
+    margin-top: 29px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    color: #ded9f4;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    height: 54px;
+    padding: 0 15px;
+    border: 1px solid rgba(167, 139, 250, .2);
+    border-radius: 13px;
+    background: rgba(7, 6, 15, .6);
+    color: var(--muted);
+    transition: border-color .2s, box-shadow .2s;
+}
+
+.input-wrapper:focus-within {
+    border-color: var(--purple);
+    box-shadow: 0 0 0 4px rgba(155, 123, 255, .1);
+}
+
+.input-wrapper > i {
+    font-size: 14px;
+}
+
+.input-wrapper input {
+    width: 100%;
+    min-width: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: var(--text);
+    font-size: 14px;
+}
+
+.input-wrapper input::placeholder {
+    color: #656078;
+}
+
+.toggle-password {
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+}
+
+.toggle-password:hover {
+    background: rgba(255, 255, 255, .06);
+    color: var(--text);
+}
+
+.error-message {
+    min-height: 18px;
+    margin-top: 10px;
+    color: var(--danger);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.login-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    height: 52px;
+    margin-top: 8px;
+    border: 1px solid rgba(255, 255, 255, .16);
+    border-radius: 13px;
+    background: linear-gradient(110deg, #8862f6, #7250d8);
+    box-shadow: 0 8px 24px rgba(114, 80, 216, .22);
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform .2s, filter .2s, opacity .2s;
+}
+
+.login-button:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+}
+
+.login-button:active {
+    transform: translateY(0);
+}
+
+.login-button:disabled {
+    cursor: wait;
+    opacity: .65;
+}
+
+.security-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, .07);
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.security-note i {
+    margin-top: 2px;
+    color: #8e82b5;
+}
+
+footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    margin-top: 25px;
+    color: #77718d;
+    font-size: 11px;
+}
+
+.footer-separator {
+    color: #504967;
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 22px 14px;
+    }
+
+    .login-card {
+        padding: 26px 22px;
+        border-radius: 20px;
+    }
+
+    .brand {
+        margin-bottom: 23px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+    }
+}

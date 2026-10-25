@@ -1,7 +1,7 @@
 const { ActivityType, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 const { Client: GeniusClient } = require('genius-lyrics');
-const config = require('../config.json');
-const genius = new GeniusClient(config.geniusToken);
+const geniusToken = process.env.GENIUS_TOKEN;
+const genius = geniusToken ? new GeniusClient(geniusToken) : null;
 
 const sonAtilanlar = new Map();
 
@@ -9,6 +9,10 @@ module.exports = {
     name: 'clientReady',
     once: true,
     execute(client) {
+        if (!genius) {
+            console.warn('[SpotifyChecker] GENIUS_TOKEN tanımlı değil; Spotify/Genius modülü devre dışı.');
+            return;
+        }
         console.log('🟢 Güvenli (API Destekli) Spotify Takip Sistemi Aktif!');
 
         const KONTROL_SURESI = 10 * 60 * 1000;

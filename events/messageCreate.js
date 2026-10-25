@@ -1,14 +1,16 @@
-const config = require('../config.json');
+const { getGuildSettings } = require('../utils/guildSettings');
 
 module.exports = {
     name: 'messageCreate',
     once: false, // Her mesaj geldiğinde tetiklensin
     async execute(message, client) {
-        // Mesaj botlardan geliyorsa veya belirlediğimiz prefix ile başlamıyorsa işlem yapma
-        if (message.author.bot || !message.content.startsWith(config.prefix)) return;
+        // Mesaj botlardan geliyorsa veya prefix ile başlamıyorsa işlem yapma
+        if (message.author.bot || !message.guild) return;
+        const prefix = getGuildSettings(message.guild.id).prefix;
+        if (!message.content.startsWith(prefix)) return;
 
         // Prefix'i kesip komut adını ve argümanları ayırıyoruz
-        const args = message.content.slice(config.prefix.length).trim().split(/ +/);
+        const args = message.content.slice(prefix.length).trim().split(/ +/);
         const commandName = args.shift().toLowerCase();
 
         // Komut klasörümüzde bu isimde bir komut var mı kontrol et
