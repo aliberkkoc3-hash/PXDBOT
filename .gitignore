@@ -1,5 +1,7 @@
 node_modules/
 .env
+.bat
+~
 *.log
 data/*.bak
 data/*.tmp
